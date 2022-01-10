@@ -9,11 +9,11 @@ using MyAirbnb.Models;
 
 namespace MyAirbnb.Controllers
 {
-    public class ImovelsController : Controller
+    public class ImoveisController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public ImovelsController(ApplicationDbContext context)
+        public ImoveisController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -47,7 +47,7 @@ namespace MyAirbnb.Controllers
         // GET: Imovels/Create
         public IActionResult Create()
         {
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Id");
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Name");
             return View();
         }
 
@@ -64,7 +64,7 @@ namespace MyAirbnb.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Id", imovel.CategoriaId);
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Name", imovel.CategoriaId);
             return View(imovel);
         }
 
@@ -81,7 +81,7 @@ namespace MyAirbnb.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Id", imovel.CategoriaId);
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Name", imovel.CategoriaId);
             return View(imovel);
         }
 
@@ -117,7 +117,7 @@ namespace MyAirbnb.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Id", imovel.CategoriaId);
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Name", imovel.CategoriaId);
             return View(imovel);
         }
 
