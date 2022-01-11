@@ -6,9 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyAirbnb.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace MyAirbnb.Controllers
 {
+    [Authorize]
     public class ImoveisController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -18,7 +21,7 @@ namespace MyAirbnb.Controllers
             _context = context;
         }
 
-        // GET: Imovels
+        // GET: Imoveis
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Imoveis.Include(i => i.Categoria);
@@ -52,14 +55,15 @@ namespace MyAirbnb.Controllers
         }
 
         // POST: Imovels/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Preco,Descricao,CategoriaId")] Imovel imovel)
+        public async Task<IActionResult> Create([Bind("Nome,Preco,Descricao,CategoriaId")] Imovel imovel)
         {
             if (ModelState.IsValid)
             {
+                //guardar ID do utilizador que o criou
+                imovel.UserId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
                 _context.Add(imovel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -86,11 +90,9 @@ namespace MyAirbnb.Controllers
         }
 
         // POST: Imovels/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Preco,Descricao,CategoriaId")] Imovel imovel)
+        public async Task<IActionResult> Edit(int id, [Bind("Nome,Preco,Descricao,CategoriaId")] Imovel imovel)
         {
             if (id != imovel.Id)
             {

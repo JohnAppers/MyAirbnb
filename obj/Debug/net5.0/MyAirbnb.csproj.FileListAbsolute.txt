@@ -441,3 +441,8 @@ C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Cate
 C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Categorias\Details.cshtml.g.cs
 C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Categorias\Edit.cshtml.g.cs
 C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Categorias\Index.cshtml.g.cs
+C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Imoveis\Create.cshtml.g.cs
+C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Imoveis\Delete.cshtml.g.cs
+C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Imoveis\Details.cshtml.g.cs
+C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Imoveis\Edit.cshtml.g.cs
+C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Imoveis\Index.cshtml.g.cs

@@ -8,6 +8,6 @@ namespace MyAirbnb.Models
 {
     public class AppUser : IdentityUser<int>
     {
-
+        public ICollection<Imovel> Imoveis { get; set; }
     }
 }
