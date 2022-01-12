@@ -11,7 +11,6 @@ using System.Security.Claims;
 
 namespace MyAirbnb.Controllers
 {
-    [Authorize]
     public class ImoveisController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -48,6 +47,7 @@ namespace MyAirbnb.Controllers
         }
 
         // GET: Imovels/Create
+        [Authorize(Roles = "Administrador, Gestor")]
         public IActionResult Create()
         {
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Name");
@@ -56,6 +56,7 @@ namespace MyAirbnb.Controllers
 
         // POST: Imovels/Create
         [HttpPost]
+        [Authorize(Roles = "Administrador, Gestor")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Nome,Preco,Descricao,CategoriaId")] Imovel imovel)
         {

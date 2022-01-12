@@ -86,10 +86,6 @@ namespace MyAirbnb.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    if (User.IsInRole("Gestor"))
-                    {
-                        return RedirectToPage("/Empresas/Index");
-                    }
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

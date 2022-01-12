@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace MyAirbnb.Controllers
 {
@@ -20,6 +21,8 @@ namespace MyAirbnb.Controllers
 
         public IActionResult Index()
         {
+            if (User.IsInRole("Gestor"))
+                return RedirectToAction("Index", "Empresas");
             return RedirectToAction("Index", "Imoveis");
         }
 
