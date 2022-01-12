@@ -62,7 +62,7 @@ namespace MyAirbnb.Controllers
             if (ModelState.IsValid)
             {
                 //guardar ID do utilizador que o criou
-                imovel.UserId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                imovel.EmpresaId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
                 _context.Add(imovel);
                 await _context.SaveChangesAsync();

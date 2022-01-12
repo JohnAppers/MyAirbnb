@@ -46,6 +46,36 @@ namespace MyAirbnb.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ConcurrencyStamp = "1",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ConcurrencyStamp = "2",
+                            Name = "Gestor",
+                            NormalizedName = "GESTOR"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ConcurrencyStamp = "3",
+                            Name = "Funcionario",
+                            NormalizedName = "FUNCIONARIO"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ConcurrencyStamp = "4",
+                            Name = "Cliente",
+                            NormalizedName = "CLIENTE"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -128,6 +158,13 @@ namespace MyAirbnb.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1,
+                            RoleId = 1
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
@@ -214,6 +251,49 @@ namespace MyAirbnb.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "7f611be1-5ae5-4674-8267-967d490d418b",
+                            Email = "admin@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = true,
+                            NormalizedEmail = "ADMIN@GMAIL.COM",
+                            NormalizedUserName = "ADMIN@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEF74HhdKqytgiVtOHwBBa64n9lhqc645cZHKM8kYaWkU1FcYgZT4yer/zAp+fkohUA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "223c56a8-fba6-4c88-a51e-df88b38703c6",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@gmail.com"
+                        });
+                });
+
+            modelBuilder.Entity("MyAirbnb.Models.Avaliacao", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Estrelas")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ImovelId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClienteId");
+
+                    b.HasIndex("ImovelId");
+
+                    b.ToTable("Avaliacoes");
                 });
 
             modelBuilder.Entity("MyAirbnb.Models.Categoria", b =>
@@ -231,6 +311,47 @@ namespace MyAirbnb.Migrations
                     b.ToTable("Categorias");
                 });
 
+            modelBuilder.Entity("MyAirbnb.Models.Cliente", b =>
+                {
+                    b.Property<int>("ClienteId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ClienteId");
+
+                    b.ToTable("Clientes");
+                });
+
+            modelBuilder.Entity("MyAirbnb.Models.Empresa", b =>
+                {
+                    b.Property<int>("EmpresaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Contacto")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Endereco")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EmpresaId");
+
+                    b.ToTable("Empresas");
+                });
+
             modelBuilder.Entity("MyAirbnb.Models.Imovel", b =>
                 {
                     b.Property<int>("Id")
@@ -239,25 +360,28 @@ namespace MyAirbnb.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("CategoriaId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Descricao")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("EmpresaId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nome")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Preco")
                         .HasColumnType("float");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CategoriaId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("EmpresaId");
 
                     b.ToTable("Imoveis");
                 });
@@ -313,29 +437,54 @@ namespace MyAirbnb.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("MyAirbnb.Models.Avaliacao", b =>
+                {
+                    b.HasOne("MyAirbnb.Models.Cliente", null)
+                        .WithMany("Avaliacoes")
+                        .HasForeignKey("ClienteId");
+
+                    b.HasOne("MyAirbnb.Models.Imovel", null)
+                        .WithMany("Avaliacoes")
+                        .HasForeignKey("ImovelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("MyAirbnb.Models.Imovel", b =>
                 {
                     b.HasOne("MyAirbnb.Models.Categoria", "Categoria")
                         .WithMany("Imoveis")
-                        .HasForeignKey("CategoriaId");
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("MyAirbnb.Models.AppUser", "User")
+                    b.HasOne("MyAirbnb.Models.Empresa", "Empresa")
                         .WithMany("Imoveis")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("EmpresaId");
 
                     b.Navigation("Categoria");
 
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("MyAirbnb.Models.AppUser", b =>
-                {
-                    b.Navigation("Imoveis");
+                    b.Navigation("Empresa");
                 });
 
             modelBuilder.Entity("MyAirbnb.Models.Categoria", b =>
                 {
                     b.Navigation("Imoveis");
+                });
+
+            modelBuilder.Entity("MyAirbnb.Models.Cliente", b =>
+                {
+                    b.Navigation("Avaliacoes");
+                });
+
+            modelBuilder.Entity("MyAirbnb.Models.Empresa", b =>
+                {
+                    b.Navigation("Imoveis");
+                });
+
+            modelBuilder.Entity("MyAirbnb.Models.Imovel", b =>
+                {
+                    b.Navigation("Avaliacoes");
                 });
 #pragma warning restore 612, 618
         }
