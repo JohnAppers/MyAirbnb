@@ -58,10 +58,11 @@ namespace MyAirbnb.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EmpresaId,UserId,Nome,Endereco,Contacto")] Empresa empresa)
+        public async Task<IActionResult> Create([Bind("Nome,Endereco,Contacto")] Empresa empresa)
         {
             if (ModelState.IsValid)
             {
+                empresa.UserId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
                 _context.Add(empresa);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -82,6 +83,12 @@ namespace MyAirbnb.Controllers
             {
                 return NotFound();
             }
+
+            int userId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            if (userId != empresa.UserId && User.IsInRole("Gestor"))
+            {
+                return NotFound();
+            }
             return View(empresa);
         }
 
@@ -90,9 +97,14 @@ namespace MyAirbnb.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EmpresaId,UserId,Nome,Endereco,Contacto")] Empresa empresa)
+        public async Task<IActionResult> Edit(int id, [Bind("Nome,Endereco,Contacto")] Empresa empresa)
         {
             if (id != empresa.EmpresaId)
+            {
+                return NotFound();
+            }
+            int userId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            if(userId != empresa.UserId && User.IsInRole("Gestor"))
             {
                 return NotFound();
             }
@@ -121,6 +133,7 @@ namespace MyAirbnb.Controllers
         }
 
         // GET: Empresas/Delete/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -140,6 +153,7 @@ namespace MyAirbnb.Controllers
 
         // POST: Empresas/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Administrador")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
