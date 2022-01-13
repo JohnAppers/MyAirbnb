@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyAirbnb.Models
 {
-    public class Cliente
+    public class Cliente : AppUser
     {
         public Cliente()
         {
@@ -14,8 +14,6 @@ namespace MyAirbnb.Models
         }
 
         public int ClienteId { get; set; }
-
-        public int UserId { get; set; }
 
         public ICollection<Avaliacao> Avaliacoes { get; set; }
     }

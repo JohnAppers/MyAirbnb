@@ -26,7 +26,7 @@ namespace MyAirbnb.Controllers
         public async Task<IActionResult> Index()
         {
             var UserId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            return View(await _context.Empresas.Where(e => e.UserId == UserId).ToListAsync());
+            return View(await _context.Empresas.Where(e => e.Id == UserId).ToListAsync());
         }
 
         // GET: Empresas/Details/5
@@ -62,7 +62,7 @@ namespace MyAirbnb.Controllers
         {
             if (ModelState.IsValid)
             {
-                empresa.UserId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                empresa.Id = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
                 _context.Add(empresa);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -85,7 +85,7 @@ namespace MyAirbnb.Controllers
             }
 
             int userId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            if (userId != empresa.UserId && User.IsInRole("Gestor"))
+            if (userId != empresa.Id && User.IsInRole("Gestor"))
             {
                 return NotFound();
             }
@@ -104,7 +104,7 @@ namespace MyAirbnb.Controllers
                 return NotFound();
             }
             int userId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            if(userId != empresa.UserId && User.IsInRole("Gestor"))
+            if(userId != empresa.Id && User.IsInRole("Gestor"))
             {
                 return NotFound();
             }

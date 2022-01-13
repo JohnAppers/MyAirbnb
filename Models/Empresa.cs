@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace MyAirbnb.Models
 {
-    public class Empresa
+    public class Empresa : AppUser
     {
         public Empresa()
         {
@@ -15,8 +15,6 @@ namespace MyAirbnb.Models
         }
 
         public int EmpresaId { get; set; }
-
-        public int UserId { get; set; }
 
         [Required]
         public string Nome { get; set; }
