@@ -14,6 +14,7 @@ namespace MyAirbnb.Models
             Imoveis = new HashSet<Imovel>();
         }
 
+        [Required]
         public int EmpresaId { get; set; }
 
         [Required]
