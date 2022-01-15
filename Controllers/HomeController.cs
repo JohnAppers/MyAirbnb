@@ -22,7 +22,7 @@ namespace MyAirbnb.Controllers
         public IActionResult Index()
         {
             if (User.IsInRole("Gestor"))
-                return RedirectToAction("Index", "Empresas");
+                return RedirectToAction("Index", "Imoveis");
             return RedirectToAction("Index", "Imoveis");
         }
 
