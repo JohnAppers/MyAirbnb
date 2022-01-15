@@ -71,7 +71,6 @@ namespace MyAirbnb.Areas.Identity.Pages.Account
             public String Endereco { get; set; }
 
             [Required]
-            [Phone]
             [Display(Name = "Contacto da empresa")]
             public int Contacto { get; set; }
         }

@@ -37,7 +37,7 @@ namespace MyAirbnb.Areas.Identity.Pages.Account
             }
             else
             {
-                return RedirectToPage();
+                return RedirectToAction("Index", "Home");
             }
         }
     }

@@ -47,7 +47,7 @@ namespace MyAirbnb.Controllers
         }
 
         // GET: Imovels/Create
-        [Authorize(Roles = "Administrador, Gestor")]
+        [Authorize(Roles = "Admin, Gestor")]
         public IActionResult Create()
         {
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Name");
@@ -56,7 +56,7 @@ namespace MyAirbnb.Controllers
 
         // POST: Imovels/Create
         [HttpPost]
-        [Authorize(Roles = "Administrador, Gestor")]
+        [Authorize(Roles = "Admin, Gestor")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Nome,Preco,Descricao,CategoriaId")] Imovel imovel)
         {

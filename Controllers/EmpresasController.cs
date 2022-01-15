@@ -12,7 +12,7 @@ using System.Security.Claims;
 
 namespace MyAirbnb.Controllers
 {
-    [Authorize(Roles = "Administrador, Gestor")]
+    [Authorize(Roles = "Admin")]
     public class EmpresasController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -25,8 +25,7 @@ namespace MyAirbnb.Controllers
         // GET: Empresas
         public async Task<IActionResult> Index()
         {
-            var UserId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            return View(await _context.Empresas.Where(e => e.Id == UserId).ToListAsync());
+            return View(await _context.Empresas.ToListAsync());
         }
 
         // GET: Empresas/Details/5
@@ -80,12 +79,6 @@ namespace MyAirbnb.Controllers
 
             var empresa = await _context.Empresas.FindAsync(id);
             if (empresa == null)
-            {
-                return NotFound();
-            }
-
-            int userId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            if (userId != empresa.Id && User.IsInRole("Gestor"))
             {
                 return NotFound();
             }

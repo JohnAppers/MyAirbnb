@@ -263,15 +263,15 @@ namespace MyAirbnb.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "809c12d0-05ea-4dbf-b2b7-c8296a25de16",
+                            ConcurrencyStamp = "754fabfb-749b-4983-a6ed-40805b474ebe",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOdzNcnIzLfux5qVFHQEZEFctATTF1JShXZobM5UUdUkygEMNjkk41A4JakSG8xIng==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFZ1HhG46iBKwwGA6ifCsUguwjclHYzVeKrUF3i9zy9KcIbUn6eIBJu+laBSQjdTrw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a8885c31-8dba-42e9-a37f-1d52ff500405",
+                            SecurityStamp = "abd3cc8a-e9ea-4bc8-8fa0-5cc58d390319",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         });
@@ -357,6 +357,9 @@ namespace MyAirbnb.Migrations
 
                     b.Property<int>("ClienteId")
                         .HasColumnType("int");
+
+                    b.Property<string>("NomeCliente")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("Cliente");
                 });

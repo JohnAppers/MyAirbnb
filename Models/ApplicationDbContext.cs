@@ -15,6 +15,7 @@ namespace MyAirbnb.Models
         public DbSet<Empresa> Empresas { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Avaliacao> Avaliacoes { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -52,6 +53,10 @@ namespace MyAirbnb.Models
             PasswordHasher<AppUser> passwordHasher = new PasswordHasher<AppUser>();
             user.PasswordHash = passwordHasher.HashPassword(user, "Admin123#");
 
+            builder.Entity<AppUser>().HasDiscriminator<String>("Discriminator")
+                .HasValue<AppUser>("AppUser")
+                .HasValue<Empresa>("Empresa")
+                .HasValue<Cliente>("Cliente");
             builder.Entity<AppUser>().HasData(user);
         }
 

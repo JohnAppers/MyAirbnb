@@ -10,7 +10,7 @@ using MyAirbnb.Models;
 
 namespace MyAirbnb.Controllers
 {
-    [Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "Admin")]
     public class CategoriasController : Controller
     {
         private readonly ApplicationDbContext _context;

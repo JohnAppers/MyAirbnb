@@ -19,4 +19,13 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Areas\Identity\Pages\Account\RegisterGestor - Copy - Copy.cshtml.cs">
+      <DependentUpon>RegisterGestor - Copy.cshtml.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Areas\Identity\Pages\Account\RegisterGestor - Copy.cshtml.cs">
+      <DependentUpon>RegisterGestor.cshtml.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>
