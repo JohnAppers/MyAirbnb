@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyAirbnb.Models
 {
@@ -14,6 +16,9 @@ namespace MyAirbnb.Models
         }
 
         public int Id { get; set; }
+
+        [Display(Name = "Foto")]
+        public string ImagemNome { get; set; }
 
         [Required]
         public string Nome { get; set; }
@@ -28,8 +33,8 @@ namespace MyAirbnb.Models
 
         public ICollection<Avaliacao> Avaliacoes { get; set; }
 
-        public int? CategoriaId { get; set; }
         [Required]
+        public int? CategoriaId { get; set; }
         public Categoria Categoria { get; set; }
 
         public int? EmpresaId { get; set; }

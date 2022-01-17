@@ -8,16 +8,22 @@ using Microsoft.EntityFrameworkCore;
 using MyAirbnb.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 
 namespace MyAirbnb.Controllers
 {
     public class ImoveisController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ImoveisController(ApplicationDbContext context)
+
+        public ImoveisController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Imoveis
@@ -47,7 +53,7 @@ namespace MyAirbnb.Controllers
         }
 
         // GET: Imovels/Create
-        [Authorize(Roles = "Admin, Gestor")]
+        [Authorize(Roles = "Gestor")]
         public IActionResult Create()
         {
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Name");
@@ -56,19 +62,31 @@ namespace MyAirbnb.Controllers
 
         // POST: Imovels/Create
         [HttpPost]
-        [Authorize(Roles = "Admin, Gestor")]
+        [Authorize(Roles = "Gestor")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Nome,Preco,Descricao,CategoriaId")] Imovel imovel)
+        public async Task<IActionResult> Create(Imovel imovel, List<IFormFile> upload_imagem)
         {
             if (ModelState.IsValid)
             {
                 //guardar ID do utilizador que o criou
                 imovel.EmpresaId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
+                //guardar caminho da imagem do imóvel
+                var imagem = upload_imagem[0];
+                if (imagem.Length > 0)
+                {
+                    var path = Path.Combine(_webHostEnvironment.ContentRootPath, "Uploads", imagem.FileName);
+                    using (Stream fileStream = new FileStream(path, FileMode.Create))
+                    {
+                        await imagem.CopyToAsync(fileStream);
+                    }
+                    imovel.ImagemNome = imagem.FileName;
+                }
                 _context.Add(imovel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Name", imovel.CategoriaId);
             return View(imovel);
         }
