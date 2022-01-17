@@ -5,6 +5,7 @@ using MyAirbnb.Roles;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using MyAirbnb.Models;
 
 namespace MyAirbnb.Models
 {
@@ -16,6 +17,7 @@ namespace MyAirbnb.Models
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Avaliacao> Avaliacoes { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<Funcionario> Funcionarios { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -66,5 +68,7 @@ namespace MyAirbnb.Models
                 new IdentityUserRole<int>() { RoleId = 1, UserId = 1 }
             );
         }
+
+        public DbSet<MyAirbnb.Models.Funcionario> Funcionario { get; set; }
     }
 }

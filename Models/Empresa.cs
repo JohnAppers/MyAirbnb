@@ -29,5 +29,6 @@ namespace MyAirbnb.Models
         public int Contacto { get; set; }
 
         public ICollection<Imovel> Imoveis { get; set; }
+        public ICollection<Funcionario> Funcionarios { get; set; }
     }
 }

@@ -14,6 +14,8 @@ namespace MyAirbnb.Models
 
         public int FuncionarioId { get; set; }
         public string FuncionarioNome { get; set; }
+        public int? EmpresaId { get; set; }
+        public Empresa Empresa { get; set; }
         public ICollection<Imovel> Imoveis { get; set; }
     }
 }

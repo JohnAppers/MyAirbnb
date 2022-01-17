@@ -491,3 +491,8 @@ C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\MyAirbnb.dll
 C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\ref\MyAirbnb.dll
 C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\MyAirbnb.pdb
 C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\MyAirbnb.genruntimeconfig.cache
+C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Funcionarios\Delete.cshtml.g.cs
+C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Funcionarios\Details.cshtml.g.cs
+C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Funcionarios\Edit.cshtml.g.cs
+C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Funcionarios\Index.cshtml.g.cs
+C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\RegisterFuncionario.cshtml.g.cs
