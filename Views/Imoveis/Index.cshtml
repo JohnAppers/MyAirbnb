@@ -35,29 +35,29 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            <td style="padding:4px;">
                 @if (item.ImagemNome != null)
                 {
-                    <img style="width:64px;height:64px; object-fit:cover" src="@Url.Content("~/Uploads/" + item.ImagemNome)">
+                    <img style="width:60px;height:60px; object-fit:cover" src="@Url.Content("~/images/" + item.ImagemNome)">
                 }
                 else
                 {
-                    <img style="width:64px;height:64px; object-fit:cover" src="">
+                    <img style="width:60px;height:60px; object-fit:cover" src="">
                 }
             </td>
-            <td>
+            <td style="padding-top:16px">
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Preco)
+            <td style="padding-top:16px">
+                @Html.DisplayFor(modelItem => item.Preco)€
             </td>
-            <td>
+            <td style="padding-top:16px">
                 @Html.DisplayFor(modelItem => item.Descricao)
             </td>
-            <td>
+            <td style="padding-top:16px">
                 @Html.DisplayFor(modelItem => item.Categoria.Name)
             </td>
-            <td>
+            <td style="padding-top:16px">
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>

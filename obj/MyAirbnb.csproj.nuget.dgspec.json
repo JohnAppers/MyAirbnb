@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Whoami\\Documents\\GitHub\\MyAirbnb\\MyAirbnb.csproj": {}
+    "C:\\Users\\joaog\\Documents\\ISEC\\PWeb\\TP\\MyAirbnb\\MyAirbnb.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Whoami\\Documents\\GitHub\\MyAirbnb\\MyAirbnb.csproj": {
+    "C:\\Users\\joaog\\Documents\\ISEC\\PWeb\\TP\\MyAirbnb\\MyAirbnb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Whoami\\Documents\\GitHub\\MyAirbnb\\MyAirbnb.csproj",
+        "projectUniqueName": "C:\\Users\\joaog\\Documents\\ISEC\\PWeb\\TP\\MyAirbnb\\MyAirbnb.csproj",
         "projectName": "MyAirbnb",
-        "projectPath": "C:\\Users\\Whoami\\Documents\\GitHub\\MyAirbnb\\MyAirbnb.csproj",
-        "packagesPath": "C:\\Users\\Whoami\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Whoami\\Documents\\GitHub\\MyAirbnb\\obj\\",
+        "projectPath": "C:\\Users\\joaog\\Documents\\ISEC\\PWeb\\TP\\MyAirbnb\\MyAirbnb.csproj",
+        "packagesPath": "C:\\Users\\joaog\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\joaog\\Documents\\ISEC\\PWeb\\TP\\MyAirbnb\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Whoami\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\joaog\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -89,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

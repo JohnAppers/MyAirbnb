@@ -75,7 +75,7 @@ namespace MyAirbnb.Controllers
                 var imagem = upload_imagem[0];
                 if (imagem.Length > 0)
                 {
-                    var path = Path.Combine(_webHostEnvironment.ContentRootPath, "Uploads", imagem.FileName);
+                    var path = Path.Combine(_webHostEnvironment.WebRootPath, "images", imagem.FileName);
                     using (Stream fileStream = new FileStream(path, FileMode.Create))
                     {
                         await imagem.CopyToAsync(fileStream);
@@ -111,7 +111,7 @@ namespace MyAirbnb.Controllers
         // POST: Imovels/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Nome,Preco,Descricao,CategoriaId")] Imovel imovel)
+        public async Task<IActionResult> Edit(int id, Imovel imovel, List<IFormFile> upload_imagem)
         {
             if (id != imovel.Id)
             {
@@ -122,6 +122,21 @@ namespace MyAirbnb.Controllers
             {
                 try
                 {
+                    //guardar caminho da imagem do imóvel
+                    var imagem = upload_imagem[0];
+                    if (imagem.Length > 0)
+                    {
+                        var path = Path.Combine(_webHostEnvironment.WebRootPath, "images", imovel.ImagemNome);
+                        if (System.IO.File.Exists(path))
+                            System.IO.File.Delete(path);
+                        path = Path.Combine(_webHostEnvironment.WebRootPath, "images", imagem.FileName);
+                        using (Stream fileStream = new FileStream(path, FileMode.Create))
+                        {
+                            await imagem.CopyToAsync(fileStream);
+                        }
+                        imovel.ImagemNome = imagem.FileName;
+                    }
+
                     _context.Update(imovel);
                     await _context.SaveChangesAsync();
                 }
