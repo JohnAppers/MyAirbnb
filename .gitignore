@@ -817,3 +817,14 @@ obj/MyAirbnb.csproj.nuget.g.props
 obj/MyAirbnb.csproj.nuget.g.targets
 obj/project.assets.json
 obj/project.nuget.cache
+.vs/MyAirbnb/v16/.suo
+.vs/MyAirbnb/DesignTimeBuild/.dtbcache.v2
+obj/project.nuget.cache
+obj/project.assets.json
+obj/MyAirbnb.csproj.nuget.g.targets
+obj/MyAirbnb.csproj.nuget.g.props
+obj/MyAirbnb.csproj.nuget.dgspec.json
+obj/Debug/net5.0/MyAirbnb.GeneratedMSBuildEditorConfig.editorconfig
+obj/Debug/net5.0/MyAirbnb.csproj.AssemblyReference.cache
+obj/Debug/net5.0/MyAirbnb.assets.cache
+*.dll
