@@ -1,2 +1,4 @@
 obj/*
 bin/*
+AppData/MyAirbnb.mdf
+AppData/MyAirbnb_log.ldf
