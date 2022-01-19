@@ -10,13 +10,13 @@ using MyAirbnb.Models;
 
 namespace MyAirbnb.Areas.Identity.Pages.Account.Manage
 {
-    public partial class IndexGestorModel : PageModel
+    public partial class IndexClienteModel : PageModel
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ApplicationDbContext _context;
 
-        public IndexGestorModel(
+        public IndexClienteModel(
             UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager,
             ApplicationDbContext context)
@@ -36,24 +36,22 @@ namespace MyAirbnb.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Display(Name = "Endereço")]
-            public string Endereco { get; set; }
+            [Display(Name = "Nome")]
+            public string Username { get; set; }
 
             [Display(Name = "Contacto")]
-            public string Contact { get; set; }
+            public int Contacto { get; set; }
         }
 
         private async Task LoadAsync(AppUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
-            var phoneNumber = _context.Empresas.First(e => e.UserName == userName).Contacto;
-            var endereco = _context.Empresas.First(e => e.UserName == userName).Endereco;
-            Username = userName;
+            var phoneNumber = _context.Clientes.First(u => u.UserName == userName).Contacto;
 
             Input = new InputModel
             {
-                Contact = phoneNumber.ToString(),
-                Endereco = endereco
+                Username = userName,
+                Contacto = phoneNumber,
             };
         }
 
@@ -72,10 +70,9 @@ namespace MyAirbnb.Areas.Identity.Pages.Account.Manage
         public async Task<IActionResult> OnPostAsync()
         {
             var user = await _userManager.GetUserAsync(User);
-            Empresa empresa = (Empresa)user;
+            Cliente cliente = (Cliente)user;
             var userName = await _userManager.GetUserNameAsync(user);
-            var phoneNumber = _context.Empresas.First(e => e.UserName == userName).Contacto;
-            var endereco = _context.Empresas.First(e => e.UserName == userName).Endereco;
+            var phoneNumber = _context.Clientes.First(u => u.UserName == userName).Contacto;
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
@@ -87,20 +84,20 @@ namespace MyAirbnb.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
             
-            if (Input.Contact != phoneNumber.ToString())
+            if (Input.Contacto != phoneNumber)
             {
-                empresa.Contacto = Int32.Parse(Input.Contact);
-                await _userManager.UpdateAsync(empresa);
+                cliente.Contacto = Input.Contacto;
+                await _userManager.UpdateAsync(cliente);
             }
 
-            if(Input.Contact != endereco)
+            if (Input.Username != userName)
             {
-                empresa.Endereco = Input.Endereco;
-                await _userManager.UpdateAsync(empresa);
+                cliente.UserName = Input.Username;
+                await _userManager.UpdateAsync(cliente);
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
+            StatusMessage = "O seu perfil foi atualizado.";
             return RedirectToPage();
         }
     }

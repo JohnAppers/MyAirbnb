@@ -996,3 +996,4 @@ C:\Users\Whoami\Documents\GitHub\MyAirbnb\obj\Debug\net5.0\MyAirbnb.dll
 C:\Users\Whoami\Documents\GitHub\MyAirbnb\obj\Debug\net5.0\ref\MyAirbnb.dll
 C:\Users\Whoami\Documents\GitHub\MyAirbnb\obj\Debug\net5.0\MyAirbnb.pdb
 C:\Users\Whoami\Documents\GitHub\MyAirbnb\obj\Debug\net5.0\MyAirbnb.genruntimeconfig.cache
+C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\IndexCliente.cshtml.g.cs

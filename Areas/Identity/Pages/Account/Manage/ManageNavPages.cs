@@ -10,6 +10,10 @@ namespace MyAirbnb.Areas.Identity.Pages.Account.Manage
     {
         public static string Index => "Index";
 
+        public static string IndexGestor => "IndexGestor";
+
+        public static string IndexCliente => "IndexCliente";
+
         public static string Email => "Email";
 
         public static string ChangePassword => "ChangePassword";

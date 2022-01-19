@@ -52,55 +52,48 @@ namespace MyAirbnb.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "A {0} tem de ter entre {2} e {1} caracteres.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Confirmar Password")]
+            [Compare("Password", ErrorMessage = "As passwords não são iguais.")]
             public string ConfirmPassword { get; set; }
 
             [Required]
-            [Display(Name = "Nome da empresa")]
-            public string Nome { get; set; }
+            [Display(Name = "Nome")]
+            public string NomeCliente { get; set; }
 
             [Required]
-            [Display(Name = "Endereço da empresa")]
-            public String Endereco { get; set; }
-
-            [Required]
-            [Phone]
-            [Display(Name = "Contacto da empresa")]
+            [Range(100000000,999999999,ErrorMessage = "Número inválido.")]
+            [Display(Name = "Contacto")]
             public int Contacto { get; set; }
         }
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public void OnGet(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var nEmpresas = _userManager.GetUsersInRoleAsync("Gestor").Result.Count;
-                var user = new Empresa {
-                    UserName = Input.Nome, //mostrar nome em vez de email
+                var nClientes = _userManager.GetUsersInRoleAsync("Cliente").Result.Count;
+                var user = new Cliente {
+                    UserName = Input.NomeCliente, //mostrar nome em vez de email
                     Email = Input.Email,
-                    EmpresaId = nEmpresas + 1,
-                    Nome = Input.Nome,
-                    Endereco = Input.Endereco,
+                    ClienteId = nClientes + 1,
+                    NomeCliente = Input.NomeCliente,
                     Contacto = Input.Contacto
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("(CLIENT) User created a new account with password.");
+                    _logger.LogInformation("(CLIENT) User created a new client with password.");
                     await _userManager.AddToRoleAsync(user, "Cliente");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -111,8 +104,8 @@ namespace MyAirbnb.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    await _emailSender.SendEmailAsync(Input.Email, "Confirme o seu email",
+                        $"Por favor confirme a sua conta <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicando aqui</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

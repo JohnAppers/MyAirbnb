@@ -17,6 +17,8 @@ namespace MyAirbnb.Models
 
         public string NomeCliente { get; set; }
 
+        public int Contacto { get; set; }
+
         public ICollection<Avaliacao> Avaliacoes { get; set; }
     }
 }

@@ -52,7 +52,7 @@ namespace MyAirbnb.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "A {0} tem de ter entre {2} e {1} caracteres.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
@@ -68,23 +68,21 @@ namespace MyAirbnb.Areas.Identity.Pages.Account
 
             [Required]
             [Display(Name = "Endereço da empresa")]
-            public String Endereco { get; set; }
+            public string Endereco { get; set; }
 
             [Required]
             [Display(Name = "Contacto da empresa")]
             public int Contacto { get; set; }
         }
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public void OnGet(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
                 var nEmpresas = _userManager.GetUsersInRoleAsync("Gestor").Result.Count;
