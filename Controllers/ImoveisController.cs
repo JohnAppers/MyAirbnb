@@ -27,9 +27,14 @@ namespace MyAirbnb.Controllers
         }
 
         // GET: Imoveis
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search)
         {
             var applicationDbContext = _context.Imoveis.Include(i => i.Categoria);
+            if (!String.IsNullOrEmpty(search))
+            {
+                var applicationDbContextSearch = _context.Imoveis.Include(i => i.Categoria).Where(a => a.Nome.Contains(search));
+                return View(await applicationDbContextSearch.ToListAsync());
+            }
             return View(await applicationDbContext.ToListAsync());
         }
 
