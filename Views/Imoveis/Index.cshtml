@@ -22,7 +22,7 @@
 <ul style='list-style:none; display: flex; flex-wrap: wrap;'>
 @foreach (var item in Model){
  <li style='display: flex; padding: 1rem;'>
-     <div class='card' style='display: flex; flex-direction: column; overflow: hidden;'>
+     <div class='card' style='display: flex; flex-direction: column; overflow: hidden; max-width: 300px;'>
          @if (item.ImagemNome != null)
          {
             <img style='height: auto; max-width: 100%; vertical-align: middle;' src="@Url.Content("~/images/" + item.ImagemNome)">
@@ -31,10 +31,18 @@
          {
             <img  style='height: auto; max-width: 100%; vertical-align: middle;' src="">
          }
-         <h2>@Html.DisplayFor(modelItem => item.Nome)</h2>
-         <h6>@Html.DisplayFor(modelItem => item.Categoria.Name)</h6>
-         <p>@Html.DisplayFor(modelItem => item.Descricao)</p>
-         <h4>@Html.DisplayFor(modelItem => item.Preco)€</h4>
+         <div style='padding: 5px; '>
+             <div style='float:left; width:75%;'>
+                <h2>@Html.DisplayFor(modelItem => item.Nome)</h2>
+                <h6>@Html.DisplayFor(modelItem => item.Categoria.Name)</h6>
+                <p>@Html.DisplayFor(modelItem => item.Descricao)</p>
+             </div>
+            <div style='float:right;width:25%; padding-top:10px;' >
+                <h5 style='text-align:center'>@Html.DisplayFor(modelItem => item.Preco)€</h5>   
+            </div>
+            <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+         </div>
+         
      </div>
  </li>   
 }
