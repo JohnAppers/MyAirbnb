@@ -472,10 +472,7 @@ C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Empr
 C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Empresas\Index.cshtml.g.cs
 C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
-C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Imoveis\Create.cshtml.g.cs
-C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Imoveis\Delete.cshtml.g.cs
 C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Imoveis\Details.cshtml.g.cs
-C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Imoveis\Edit.cshtml.g.cs
 C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Imoveis\Index.cshtml.g.cs
 C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
@@ -997,3 +994,8 @@ C:\Users\Whoami\Documents\GitHub\MyAirbnb\obj\Debug\net5.0\ref\MyAirbnb.dll
 C:\Users\Whoami\Documents\GitHub\MyAirbnb\obj\Debug\net5.0\MyAirbnb.pdb
 C:\Users\Whoami\Documents\GitHub\MyAirbnb\obj\Debug\net5.0\MyAirbnb.genruntimeconfig.cache
 C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\IndexCliente.cshtml.g.cs
+C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Propriedades\Create.cshtml.g.cs
+C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Propriedades\Delete.cshtml.g.cs
+C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Propriedades\Details.cshtml.g.cs
+C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Propriedades\Edit.cshtml.g.cs
+C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Propriedades\Index.cshtml.g.cs

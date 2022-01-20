@@ -9,7 +9,6 @@
 <div>
     <h4>Imóvel</h4>
     <hr />
-
     @if (Model.ImagemNome != null)
     {
         <img style="width:360px;height:360px; object-fit:cover" src="@Url.Content("~/images/" + Model.ImagemNome)">
@@ -46,7 +45,7 @@
             @Html.DisplayFor(model => model.Categoria.Id)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Funcionario)
+            Funcionário
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Funcionario.FuncionarioNome)

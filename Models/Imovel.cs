@@ -12,7 +12,7 @@ namespace MyAirbnb.Models
     {
         public Imovel()
         {
-            Avaliacoes = new HashSet<Avaliacao>();
+            Reservas = new HashSet<Reserva>();
         }
 
         public int Id { get; set; }
@@ -31,7 +31,7 @@ namespace MyAirbnb.Models
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
-        public ICollection<Avaliacao> Avaliacoes { get; set; }
+        public ICollection<Reserva> Reservas { get; set; }
 
         [Required]
         public int? CategoriaId { get; set; }

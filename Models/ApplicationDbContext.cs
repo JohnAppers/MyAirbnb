@@ -11,6 +11,7 @@ namespace MyAirbnb.Models
 {
     public class ApplicationDbContext : IdentityDbContext<AppUser, IdentityRole<int>, int>
     {
+        public DbSet<Reserva> Reservas { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Imovel> Imoveis { get; set; }
         public DbSet<Empresa> Empresas { get; set; }

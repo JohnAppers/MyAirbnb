@@ -30,8 +30,11 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Categorias" asp-action="Index">Categorias</a>
                             </li>
                         }
-                        @if(User.IsInRole("Gestor"))
+                        @if (User.IsInRole("Gestor"))
                         {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Propriedades" asp-action="Index">Propriedades</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Funcionarios" asp-action="Index">Funcionários</a>
                             </li>
