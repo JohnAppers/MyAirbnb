@@ -19,59 +19,25 @@
         <a asp-action="Create">Inserir novo imóvel</a>
     </p>
 }
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ImagemNome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Preco)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descricao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Categoria)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td style="padding:4px;">
-                    @if (item.ImagemNome != null)
-                    {
-                        <img style="width:60px;height:60px; object-fit:cover" src="@Url.Content("~/images/" + item.ImagemNome)">
-                    }
-                    else
-                    {
-                        <img style="width:60px;height:60px; object-fit:cover" src="">
-                    }
-                </td>
-                <td style="padding-top:16px">
-                    @Html.DisplayFor(modelItem => item.Nome)
-                </td>
-                <td style="padding-top:16px">
-                    @Html.DisplayFor(modelItem => item.Preco)€
-                </td>
-                <td style="padding-top:16px">
-                    @Html.DisplayFor(modelItem => item.Descricao)
-                </td>
-                <td style="padding-top:16px">
-                    @Html.DisplayFor(modelItem => item.Categoria.Name)
-                </td>
-                <td style="padding-top:16px">
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<ul style='list-style:none; display: flex; flex-wrap: wrap;'>
+@foreach (var item in Model){
+ <li style='display: flex; padding: 1rem;'>
+     <div class='card' style='display: flex; flex-direction: column; overflow: hidden;'>
+         @if (item.ImagemNome != null)
+         {
+            <img style='height: auto; max-width: 100%; vertical-align: middle;' src="@Url.Content("~/images/" + item.ImagemNome)">
+         }
+         else
+         {
+            <img  style='height: auto; max-width: 100%; vertical-align: middle;' src="">
+         }
+         <h2>@Html.DisplayFor(modelItem => item.Nome)</h2>
+         <h6>@Html.DisplayFor(modelItem => item.Categoria.Name)</h6>
+         <p>@Html.DisplayFor(modelItem => item.Descricao)</p>
+         <h4>@Html.DisplayFor(modelItem => item.Preco)€</h4>
+     </div>
+ </li>   
+}
+</ul>
+
+
