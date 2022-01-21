@@ -1,0 +1,140 @@
+﻿@model MyAirbnb.Models.Reserva
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalhes</h1>
+
+<div>
+    <h4>Reserva</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DateStart)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateStart)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DateEnd)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateEnd)
+        </dd>
+        <dt class="col-sm-2">
+            Imóvel
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Imovel.Nome)
+        </dd>
+        <dt class="col-sm-2">
+            Avaliação do imóvel
+        </dt>
+        @if (Model.RatingImovel == null)
+        {
+            <dd class="col-sm-10">
+                <p>Ainda não foi avaliado.</p>
+            </dd>
+        }
+        else
+        {
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.RatingImovel)
+            </dd>
+            <dt class="col-sm-2">
+                Comentários
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CommentImovel)
+            </dd>
+        }
+        <dt class="col-sm-2">
+            Funcionário
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Funcionario.FuncionarioNome)
+        </dd>
+        <dt class="col-sm-2">
+            Avaliação do funcionário
+        </dt>
+        @if (Model.RatingFuncionario == null)
+        {
+            <dd class="col-sm-10">
+                <p>Ainda não foi avaliado.</p>
+            </dd>
+        }
+        else
+        {
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.RatingFuncionario)
+            </dd>
+            <dt class="col-sm-2">
+                Comentários
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CommentFuncionario)
+            </dd>
+        }
+        <dt class="col-sm-2">
+            Proprietário
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Empresa.Nome)
+        </dd>
+        <dt class="col-sm-2">
+            Avaliação do proprietário
+        </dt>
+        @if (Model.RatingGestor == null)
+        {
+            <dd class="col-sm-10">
+                <p>Ainda não foi avaliado.</p>
+            </dd>
+        }
+        else
+        {
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.RatingGestor)
+            </dd>
+            <dt class="col-sm-2">
+                Comentários
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CommentGestor)
+            </dd>
+        }
+        @if (User.IsInRole("Gestor") || User.IsInRole("Funcionario"))
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Cliente)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Cliente.NomeCliente)
+            </dd>
+            <dt class="col-sm-2">
+                Avaliação do cliente
+            </dt>
+            @if (Model.RatingCliente == null)
+            {
+                <dd class="col-sm-10">
+                    <p>Ainda não foi avaliado.</p>
+                </dd>
+            }
+            else
+            {
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.RatingCliente)
+                </dd>
+                <dt class="col-sm-2">
+                    Comentários
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.CommentCliente)
+                </dd>
+            }
+        }
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Voltar à lista</a>
+</div>

@@ -16,7 +16,6 @@ namespace MyAirbnb.Models
         public DbSet<Imovel> Imoveis { get; set; }
         public DbSet<Empresa> Empresas { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
-        public DbSet<Avaliacao> Avaliacoes { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Funcionario> Funcionarios { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)

@@ -12,6 +12,8 @@ namespace MyAirbnb.Models
         public Empresa()
         {
             Imoveis = new HashSet<Imovel>();
+            Funcionarios = new HashSet<Funcionario>();
+            Reservas = new HashSet<Reserva>();
         }
 
         [Required]
@@ -30,5 +32,6 @@ namespace MyAirbnb.Models
 
         public ICollection<Imovel> Imoveis { get; set; }
         public ICollection<Funcionario> Funcionarios { get; set; }
+        public ICollection<Reserva> Reservas { get; set; }
     }
 }

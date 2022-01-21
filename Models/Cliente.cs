@@ -10,7 +10,7 @@ namespace MyAirbnb.Models
     {
         public Cliente()
         {
-            Avaliacoes = new HashSet<Avaliacao>();
+            Reservas = new HashSet<Reserva>();
         }
 
         public int ClienteId { get; set; }
@@ -19,6 +19,6 @@ namespace MyAirbnb.Models
 
         public int Contacto { get; set; }
 
-        public ICollection<Avaliacao> Avaliacoes { get; set; }
+        public ICollection<Reserva> Reservas { get; set; }
     }
 }

@@ -1,0 +1,86 @@
+﻿@model IEnumerable<MyAirbnb.Models.Reserva>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Reservas</h1>
+
+@if (User.IsInRole("Cliente")) 
+{ 
+    <p>
+        <a asp-action="Create">Reservar um imóvel</a>
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Imóvel
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateStart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateEnd)
+            </th>
+            @if (User.IsInRole("Cliente"))
+            {
+                <th>
+                    Funcionário
+                </th>
+                <th>
+                    Proprietário
+                </th>
+            }
+            @if (User.IsInRole("Gestor,Funcionario"))
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.Cliente)
+                </th>
+            }
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imovel.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateStart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateEnd)
+            </td>
+            @if (User.IsInRole("Cliente"))
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Funcionario.FuncionarioNome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Empresa.Nome)
+                </td>
+            }
+            @if (User.IsInRole("Gestor,Funcionario"))
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cliente.NomeCliente)
+                </td>
+            }
+        <td>
+            @if (User.IsInRole("Cliente"))
+            {
+                <a asp-action="EditCliente" asp-route-id="@item.Id">Editar</a> <b>|</b>
+            }
+            @if (User.IsInRole("Gestor"))
+            {
+                <a asp-action="EditGestor" asp-route-id="@item.Id">Editar</a> <b>|</b>
+            }
+            <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+        </td>
+        </tr>
+}
+    </tbody>
+</table>

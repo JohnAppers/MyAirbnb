@@ -10,6 +10,7 @@ namespace MyAirbnb.Models
         public Funcionario()
         {
             Imoveis = new HashSet<Imovel>();
+            Reservas = new HashSet<Reserva>();
         }
 
         public int FuncionarioId { get; set; }
@@ -17,5 +18,6 @@ namespace MyAirbnb.Models
         public int? EmpresaId { get; set; }
         public Empresa Empresa { get; set; }
         public ICollection<Imovel> Imoveis { get; set; }
+        public ICollection<Reserva> Reservas { get; set; }
     }
 }

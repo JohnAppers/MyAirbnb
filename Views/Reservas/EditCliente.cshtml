@@ -1,0 +1,62 @@
+﻿@model MyAirbnb.Models.Reserva
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Editar</h1>
+
+<h4>Reserva</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditCliente">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="DateStart" />
+            <input type="hidden" asp-for="DateEnd" />
+            <input type="hidden" asp-for="ImovelId" />
+            <div class="form-group">
+                <label asp-for="RatingImovel" class="control-label"></label>
+                <input asp-for="RatingImovel" class="form-control" />
+                <span asp-validation-for="RatingImovel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CommentImovel" class="control-label"></label>
+                <input asp-for="CommentImovel" class="form-control" />
+                <span asp-validation-for="CommentImovel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RatingFuncionario" class="control-label"></label>
+                <input asp-for="RatingFuncionario" class="form-control" />
+                <span asp-validation-for="RatingFuncionario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CommentFuncionario" class="control-label"></label>
+                <input asp-for="CommentFuncionario" class="form-control" />
+                <span asp-validation-for="CommentFuncionario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RatingGestor" class="control-label"></label>
+                <input asp-for="RatingGestor" class="form-control" />
+                <span asp-validation-for="RatingGestor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CommentGestor" class="control-label"></label>
+                <input asp-for="CommentGestor" class="form-control" />
+                <span asp-validation-for="CommentGestor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar à lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

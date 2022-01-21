@@ -999,3 +999,9 @@ C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Prop
 C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Propriedades\Details.cshtml.g.cs
 C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Propriedades\Edit.cshtml.g.cs
 C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Propriedades\Index.cshtml.g.cs
+C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Reservas\Create.cshtml.g.cs
+C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Reservas\Delete.cshtml.g.cs
+C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Reservas\Details.cshtml.g.cs
+C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Reservas\Index.cshtml.g.cs
+C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Reservas\EditGestor.cshtml.g.cs
+C:\Users\joaog\Documents\ISEC\PWeb\TP\MyAirbnb\obj\Debug\net5.0\Razor\Views\Reservas\EditCliente.cshtml.g.cs

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyAirbnb.Models;
 
 namespace MyAirbnb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220120214133_Reservas")]
+    partial class Reservas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -263,15 +265,15 @@ namespace MyAirbnb.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f8d7520d-34d4-47f1-92e8-876b7c7bfd93",
+                            ConcurrencyStamp = "f612892e-4525-4936-9d04-dbdc6ac6e6d9",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBViOUJRqS85HJtiHjPMfQ0TqpMSBQLBbXJQe0DaQg79jkc3t5M66djjLYr4LWBAQg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJb+Hrjp4XVv72VYh1A4NQ48LwFMVBSPcJGNUFTpS01VxE5MSeEVS+P8sNA59lPYnw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f1b54d64-2745-4dc3-a05f-f62170b748aa",
+                            SecurityStamp = "c522639a-fd09-4cb2-bf34-b47f5979a460",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         });
@@ -356,10 +358,7 @@ namespace MyAirbnb.Migrations
                     b.Property<string>("CommentImovel")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DateEnd")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateStart")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("EmpresaId")
