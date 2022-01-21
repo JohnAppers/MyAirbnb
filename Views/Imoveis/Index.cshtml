@@ -40,7 +40,8 @@
             <div style='float:right;width:25%; padding-top:10px;' >
                 <h5 style='text-align:center'>@Html.DisplayFor(modelItem => item.Preco)€</h5>   
             </div>
-            <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+            @Html.ActionLink("Detalhes", "Details", "Imoveis", new {item.Id}, new { @class = "btn btn-primary"})
+            
          </div>
          
      </div>
