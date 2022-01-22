@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -14,6 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using MyAirbnb.Models;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+using System.Text.Encodings.Web;
+using System.Threading.Tasks;
 
 namespace MyAirbnb.Areas.Identity.Pages.Account
 {
@@ -67,7 +66,7 @@ namespace MyAirbnb.Areas.Identity.Pages.Account
             public string NomeCliente { get; set; }
 
             [Required]
-            [Range(100000000,999999999,ErrorMessage = "Número inválido.")]
+            [Range(100000000, 999999999, ErrorMessage = "Número inválido.")]
             [Display(Name = "Contacto")]
             public int Contacto { get; set; }
         }
@@ -83,7 +82,8 @@ namespace MyAirbnb.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var nClientes = _userManager.GetUsersInRoleAsync("Cliente").Result.Count;
-                var user = new Cliente {
+                var user = new Cliente
+                {
                     UserName = Input.NomeCliente, //mostrar nome em vez de email
                     Email = Input.Email,
                     ClienteId = nClientes + 1,

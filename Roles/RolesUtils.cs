@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MyAirbnb.Roles
 {
@@ -27,7 +25,7 @@ namespace MyAirbnb.Roles
             get
             {
                 return roles.Where(r => r.Id == 2 || r.Id == 4)
-                    .Select(r => new SelectListItem() 
+                    .Select(r => new SelectListItem()
                     {
                         Text = r.Name,
                         Value = r.Id.ToString()

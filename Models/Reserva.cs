@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MyAirbnb.Models
 {
@@ -27,7 +24,7 @@ namespace MyAirbnb.Models
         public int? ImovelId { get; set; }
         public Imovel Imovel { get; set; }
         [Display(Name = "Avaliação do imóvel")]
-        [Range(1,5)]
+        [Range(1, 5)]
         public int? RatingImovel { get; set; }
         [Display(Name = "Comentários")]
         public string CommentImovel { get; set; }
@@ -50,7 +47,7 @@ namespace MyAirbnb.Models
         [Display(Name = "Comentários")]
         public string CommentGestor { get; set; }
 
-        
+
         public int? ClienteId { get; set; }
         public Cliente Cliente { get; set; }
         [Display(Name = "Avaliação do cliente")]

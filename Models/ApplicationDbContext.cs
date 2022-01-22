@@ -3,9 +3,6 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MyAirbnb.Roles;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using MyAirbnb.Models;
 
 namespace MyAirbnb.Models
 {

@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MyAirbnb.Models;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MyAirbnb.Areas.Identity.Pages.Account.Manage
 {
@@ -86,14 +85,14 @@ namespace MyAirbnb.Areas.Identity.Pages.Account.Manage
                 await LoadAsync(user);
                 return Page();
             }
-            
+
             if (Input.Contact != phoneNumber.ToString())
             {
                 empresa.Contacto = Int32.Parse(Input.Contact);
                 await _userManager.UpdateAsync(empresa);
             }
 
-            if(Input.Contact != endereco)
+            if (Input.Contact != endereco)
             {
                 empresa.Endereco = Input.Endereco;
                 await _userManager.UpdateAsync(empresa);

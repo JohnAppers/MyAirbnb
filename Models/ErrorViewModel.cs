@@ -1,5 +1,3 @@
-using System;
-
 namespace MyAirbnb.Models
 {
     public class ErrorViewModel

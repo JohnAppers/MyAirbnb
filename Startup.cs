@@ -1,17 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyAirbnb.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MyAirbnb
 {
@@ -27,10 +21,10 @@ namespace MyAirbnb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string dbpath = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "AppData"); 
+            string dbpath = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "AppData");
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection").Replace("[path]",dbpath)));
+                    Configuration.GetConnectionString("DefaultConnection").Replace("[path]", dbpath)));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddIdentity<AppUser, IdentityRole<int>>(options => options.SignIn.RequireConfirmedAccount = true)

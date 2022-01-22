@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyAirbnb.Models;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace MyAirbnb.Controllers
 {
-    [Authorize(Roles="Gestor")]
+    [Authorize(Roles = "Gestor")]
     public class PropriedadesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -130,7 +130,7 @@ namespace MyAirbnb.Controllers
                         var imagem = upload_imagem[0];
                         if (imagem.Length > 0)
                         {
-                            if(imovel.ImagemNome != null)
+                            if (imovel.ImagemNome != null)
                             {
                                 var path = Path.Combine(_webHostEnvironment.WebRootPath, "images", imovel.ImagemNome);
                                 if (System.IO.File.Exists(path))

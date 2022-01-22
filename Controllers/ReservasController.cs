@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyAirbnb.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace MyAirbnb.Controllers
 {
@@ -30,7 +30,7 @@ namespace MyAirbnb.Controllers
             {
                 return View(await applicationDbContext.Where(i => i.ClienteId == userId).ToListAsync());
             }
-            else if(User.IsInRole("Gestor"))
+            else if (User.IsInRole("Gestor"))
             {
                 return View(await applicationDbContext.Where(i => i.EmpresaId == userId).ToListAsync());
             }
@@ -81,7 +81,7 @@ namespace MyAirbnb.Controllers
             {
                 bool notAvailable = false;
                 ICollection<Reserva> reservasImovel = _context.Reservas.Where(i => i.ImovelId == reserva.ImovelId).ToList();
-                foreach(Reserva datas in reservasImovel)
+                foreach (Reserva datas in reservasImovel)
                 {
                     if ((reserva.DateStart > datas.DateStart && reserva.DateStart < datas.DateEnd) //se a reserva começar a meio
                         || (reserva.DateEnd > datas.DateStart && reserva.DateEnd < datas.DateStart) //se a reserva acabar a meio

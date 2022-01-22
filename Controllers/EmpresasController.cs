@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyAirbnb.Models;
-using Microsoft.AspNetCore.Identity;
+using System;
+using System.Linq;
 using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace MyAirbnb.Controllers
 {
@@ -97,7 +94,7 @@ namespace MyAirbnb.Controllers
                 return NotFound();
             }
             int userId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            if(userId != empresa.Id && User.IsInRole("Gestor"))
+            if (userId != empresa.Id && User.IsInRole("Gestor"))
             {
                 return NotFound();
             }
