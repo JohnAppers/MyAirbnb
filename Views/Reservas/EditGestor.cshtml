@@ -13,6 +13,9 @@
         <form asp-action="EditGestor">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="DateStart" />
+            <input type="hidden" asp-for="DateEnd" />
+            <input type="hidden" asp-for="ImovelId" />
             <div class="form-group">
                 <label asp-for="RatingCliente" class="control-label"></label>
                 <input asp-for="RatingCliente" class="form-control" />

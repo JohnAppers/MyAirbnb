@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +25,19 @@ namespace MyAirbnb.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Reservas.Include(r => r.Cliente).Include(r => r.Empresa).Include(r => r.Funcionario).Include(r => r.Imovel);
+            var userId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            if (User.IsInRole("Cliente"))
+            {
+                return View(await applicationDbContext.Where(i => i.ClienteId == userId).ToListAsync());
+            }
+            else if(User.IsInRole("Gestor"))
+            {
+                return View(await applicationDbContext.Where(i => i.EmpresaId == userId).ToListAsync());
+            }
+            else if (User.IsInRole("Funcionario"))
+            {
+                return View(await applicationDbContext.Where(i => i.FuncionarioId == userId).ToListAsync());
+            }
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -66,7 +80,7 @@ namespace MyAirbnb.Controllers
             if (ModelState.IsValid)
             {
                 bool notAvailable = false;
-                ICollection<Reserva> reservasImovel = _context.Imoveis.First(i => i.Id == reserva.ImovelId).Reservas;
+                ICollection<Reserva> reservasImovel = _context.Reservas.Where(i => i.ImovelId == reserva.ImovelId).ToList();
                 foreach(Reserva datas in reservasImovel)
                 {
                     if ((reserva.DateStart > datas.DateStart && reserva.DateStart < datas.DateEnd) //se a reserva começar a meio
@@ -80,9 +94,10 @@ namespace MyAirbnb.Controllers
                     ViewData["ErroData"] = "A data que escolheu não faz sentido.";
                 else
                 {
-                    ViewData["ErroData"] = "";
-                    reserva.Imovel = _context.Imoveis.First(i => i.Id == reserva.ImovelId);
-                    reserva.EmpresaId = reserva.Imovel.EmpresaId;
+                    //guardar ID dos participantes
+                    reserva.ClienteId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                    reserva.FuncionarioId = _context.Imoveis.First(i => i.Id == reserva.ImovelId).FuncionarioId;
+                    reserva.EmpresaId = _context.Imoveis.First(i => i.Id == reserva.ImovelId).EmpresaId;
 
                     _context.Add(reserva);
                     await _context.SaveChangesAsync();
@@ -125,6 +140,11 @@ namespace MyAirbnb.Controllers
             {
                 try
                 {
+                    var savedReserva = _context.Reservas.AsNoTracking().First(i => i.Id == id);
+                    reserva.FuncionarioId = savedReserva.FuncionarioId;
+                    reserva.EmpresaId = savedReserva.EmpresaId;
+                    reserva.ClienteId = savedReserva.ClienteId;
+
                     _context.Update(reserva);
                     await _context.SaveChangesAsync();
                 }
@@ -165,7 +185,7 @@ namespace MyAirbnb.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Gestor")]
-        public async Task<IActionResult> EditGestor(int id, Reserva reserva)
+        public async Task<IActionResult> EditGestor(int id, [Bind("Id,DateStart,DateEnd,ImovelId,RatingCliente,CommentCliente")] Reserva reserva)
         {
             if (id != reserva.Id)
             {
@@ -176,6 +196,17 @@ namespace MyAirbnb.Controllers
             {
                 try
                 {
+                    var savedReserva = _context.Reservas.AsNoTracking().First(i => i.Id == id);
+                    reserva.FuncionarioId = savedReserva.FuncionarioId;
+                    reserva.EmpresaId = savedReserva.EmpresaId;
+                    reserva.ClienteId = savedReserva.ClienteId;
+                    reserva.RatingGestor = savedReserva.RatingGestor;
+                    reserva.RatingFuncionario = savedReserva.RatingFuncionario;
+                    reserva.RatingImovel = savedReserva.RatingImovel;
+                    reserva.CommentGestor = savedReserva.CommentGestor;
+                    reserva.CommentFuncionario = savedReserva.CommentFuncionario;
+                    reserva.CommentImovel = savedReserva.CommentImovel;
+
                     _context.Update(reserva);
                     await _context.SaveChangesAsync();
                 }

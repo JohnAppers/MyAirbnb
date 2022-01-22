@@ -33,7 +33,7 @@
                     Proprietário
                 </th>
             }
-            @if (User.IsInRole("Gestor,Funcionario"))
+            @if (User.IsInRole("Gestor") || User.IsInRole("Funcionario"))
             {
                 <th>
                     @Html.DisplayNameFor(model => model.Cliente)
@@ -63,7 +63,7 @@
                     @Html.DisplayFor(modelItem => item.Empresa.Nome)
                 </td>
             }
-            @if (User.IsInRole("Gestor,Funcionario"))
+            @if (User.IsInRole("Gestor") || User.IsInRole("Funcionario"))
             {
                 <td>
                     @Html.DisplayFor(modelItem => item.Cliente.NomeCliente)

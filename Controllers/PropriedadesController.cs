@@ -31,7 +31,7 @@ namespace MyAirbnb.Controllers
         {
             var userId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
             var empresa = _context.Empresas.First(i => i.Id == userId);
-            var applicationDbContext = _context.Imoveis.Include(i => i.Categoria).Include(i => i.Funcionario).Where(i => i.EmpresaId == empresa.EmpresaId);
+            var applicationDbContext = _context.Imoveis.Include(i => i.Categoria).Include(i => i.Funcionario).Include(i => i.Reservas).Where(i => i.EmpresaId == empresa.Id);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -71,8 +71,7 @@ namespace MyAirbnb.Controllers
             {
                 //guardar ID da empresa que o criou
                 var userId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-                var empresa = _context.Empresas.First(i => i.Id == userId);
-                imovel.EmpresaId = empresa.EmpresaId;
+                imovel.EmpresaId = userId;
 
                 //guardar caminho da imagem do imóvel
                 var imagem = upload_imagem[0];
@@ -146,8 +145,7 @@ namespace MyAirbnb.Controllers
                         }
                     }
                     var userId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-                    var empresa = _context.Empresas.First(i => i.Id == userId);
-                    imovel.EmpresaId = empresa.EmpresaId;
+                    imovel.EmpresaId = userId;
 
                     _context.Update(imovel);
                     await _context.SaveChangesAsync();

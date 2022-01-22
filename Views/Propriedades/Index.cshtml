@@ -27,41 +27,48 @@
             <th>
                 @Html.DisplayNameFor(model => model.Categoria)
             </th>
+            <th>
+                Avaliação
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td style="padding:4px;">
-                    @if (item.ImagemNome != null)
-                    {
-                        <img style="width:60px;height:60px; object-fit:cover" src="@Url.Content("~/images/" + item.ImagemNome)">
-                    }
-                    else
-                    {
-                        <img style="width:60px;height:60px; object-fit:cover" src="">
-                    }
-                </td>
-                <td style="padding-top:16px">
-                    @Html.DisplayFor(modelItem => item.Nome)
-                </td>
-                <td style="padding-top:16px">
-                    @Html.DisplayFor(modelItem => item.Preco)€
-                </td>
-                <td style="padding-top:16px">
-                    @Html.DisplayFor(modelItem => item.Descricao)
-                </td>
-                <td style="padding-top:16px">
-                    @Html.DisplayFor(modelItem => item.Categoria.Name)
-                </td>
-                <td style="padding-top:16px">
-                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Remover</a>
-                </td>
-            </tr>
+        <tr>
+            <td style="padding:4px;">
+                @if (item.ImagemNome != null)
+                {
+                    <img style="width:60px;height:60px; object-fit:cover" src="@Url.Content("~/images/" + item.ImagemNome)">
+                }
+                else
+                {
+                    <img style="width:60px;height:60px; object-fit:cover" src="">
+                }
+            </td>
+            <td style="padding-top:16px">
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td style="padding-top:16px">
+                @Html.DisplayFor(modelItem => item.Preco)€
+            </td>
+            <td style="padding-top:16px">
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td style="padding-top:16px">
+                @Html.DisplayFor(modelItem => item.Categoria.Name)
+            </td>
+            <td>
+                @{double? media = item.Reservas.Average(r => r.RatingImovel);}
+                @Html.DisplayFor(modelItem => media)
+            </td>
+            <td style="padding-top:16px">
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Remover</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

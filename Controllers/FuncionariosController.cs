@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyAirbnb.Models;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 
 namespace MyAirbnb.Controllers
 {
@@ -15,10 +16,11 @@ namespace MyAirbnb.Controllers
     public class FuncionariosController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public FuncionariosController(ApplicationDbContext context)
+        private readonly UserManager<AppUser> _userManager;
+        public FuncionariosController(ApplicationDbContext context, UserManager<AppUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Funcionarios
@@ -63,11 +65,9 @@ namespace MyAirbnb.Controllers
         }
 
         // POST: Funcionarios/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FuncionarioId,FuncionarioNome,Id,UserName,NormalizedUserName,Email,NormalizedEmail,EmailConfirmed,PasswordHash,SecurityStamp,ConcurrencyStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnd,LockoutEnabled,AccessFailedCount")] Funcionario funcionario)
+        public async Task<IActionResult> Edit(int id, Funcionario funcionario)
         {
             if (id != funcionario.Id)
             {
@@ -78,8 +78,9 @@ namespace MyAirbnb.Controllers
             {
                 try
                 {
-                    _context.Update(funcionario);
-                    await _context.SaveChangesAsync();
+                    var SavedUser = await _userManager.FindByIdAsync(funcionario.Id.ToString());
+                    funcionario.SecurityStamp = SavedUser.SecurityStamp;
+                    await _userManager.UpdateAsync(funcionario);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
