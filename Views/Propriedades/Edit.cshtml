@@ -13,8 +13,11 @@
         <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ImagemNome" />
             <div class="form-group">
+                <label asp-for="ImagemNome" class="control-label">Foto</label>
                 <input type="file" accept=".png,.jpg" name="upload_imagem" />
+                <span asp-validation-for="ImagemNome" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
