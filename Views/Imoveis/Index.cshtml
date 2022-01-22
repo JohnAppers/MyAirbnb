@@ -64,7 +64,8 @@
                     @Html.DisplayFor(modelItem => item.Categoria.Name)
                 </td>
                 <td>
-                    @{double? media = item.Reservas.Average(r => r.RatingImovel);}
+                    @{double? media = item.Reservas.Average(r => r.RatingImovel);
+                        if(media!=null)media = (double)Math.Round((decimal)media, 1);}
                     @Html.DisplayFor(modelItem => media)
                 </td>
                 <td style="padding-top:16px">
